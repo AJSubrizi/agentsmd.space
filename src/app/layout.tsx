@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
@@ -6,19 +6,71 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
+const SITE_URL = "https://agentsmd.space";
+const TITLE = "Agents — AGENTS.md and CLAUDE.md files for AI coding agents";
+const DESCRIPTION =
+  "Browse community-made AGENTS.md and CLAUDE.md files for Codex, Claude Code, Cursor, Windsurf, OpenCode and more. Copy. Paste. Ship.";
+
 export const metadata: Metadata = {
-  title: "Agents — AGENTS.md and CLAUDE.md files for AI coding agents",
-  description:
-    "Browse community-made AGENTS.md and CLAUDE.md files for Codex, Claude Code, Cursor, Windsurf and more. Copy. Paste. Ship.",
-  metadataBase: new URL("https://agentsmd.space"),
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s — Agents",
+  },
+  description: DESCRIPTION,
+  applicationName: "Agents",
+  authors: [{ name: "agentsmd.space contributors" }],
+  keywords: [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "AI coding agents",
+    "Claude Code",
+    "Codex",
+    "Cursor",
+    "Windsurf",
+    "OpenCode",
+    "Aider",
+    "agent instructions",
+    "AI rules",
+    "Cursor rules",
+    "Windsurf rules",
+  ],
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "Agents — directory of AGENTS.md and CLAUDE.md files",
-    description:
-      "Community-curated instruction files for AI coding agents.",
-    url: "https://agentsmd.space",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
     siteName: "Agents",
     type: "website",
+    locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    creator: "@AJSubrizi",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  category: "technology",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f9fafb" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

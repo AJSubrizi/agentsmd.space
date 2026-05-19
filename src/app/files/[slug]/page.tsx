@@ -13,7 +13,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const file = getFile(slug);
   if (!file) return { title: "Not found" };
-  return { title: `${file.title} — Agents`, description: file.description };
+  const url = `https://agentsmd.space/files/${file.slug}`;
+  return {
+    title: file.title,
+    description: file.description,
+    keywords: [file.type, ...file.agents, ...file.stack, ...file.tags, file.useCase],
+    alternates: { canonical: url },
+    openGraph: {
+      title: file.title,
+      description: file.description,
+      url,
+      type: "article",
+      tags: file.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: file.title,
+      description: file.description,
+    },
+  };
 }
 
 export default async function FileDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,9 +42,36 @@ export default async function FileDetail({ params }: { params: Promise<{ slug: s
   const html = await renderMarkdown(file.body);
   const isAgents = file.type === "AGENTS.md";
   const accent = isAgents ? "emerald" : "amber";
+  const url = `https://agentsmd.space/files/${file.slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        headline: file.title,
+        description: file.description,
+        url,
+        author: { "@type": "Person", name: file.author },
+        keywords: [...file.stack, ...file.agents, ...file.tags].join(", "),
+        articleSection: file.type,
+        about: file.stack,
+        inLanguage: "en",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://agentsmd.space" },
+          { "@type": "ListItem", position: 2, name: "Files", item: "https://agentsmd.space/files" },
+          { "@type": "ListItem", position: 3, name: file.title, item: url },
+        ],
+      },
+    ],
+  };
 
   return (
     <section className="py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Link
           href="/files"
