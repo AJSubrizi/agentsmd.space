@@ -20,8 +20,6 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-gfm": "^4.0.0",
-    "rehype-highlight": "^7.0.1",
-    "next-mdx-remote": "^5.0.0",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.4",
     "class-variance-authority": "^0.7.0",
