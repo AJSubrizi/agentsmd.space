@@ -10,15 +10,6 @@ I kept getting asked _"what should I put in my AGENTS.md?"_, so I built a place 
 
 Works with Codex, Claude Code, Cursor, Windsurf, OpenCode, Aider — anything that reads these files.
 
-## Run it locally
-
-```bash
-pnpm install
-pnpm dev
-```
-
-Open http://localhost:3000.
-
 ## Add your file
 
 1. Fork the repo.
