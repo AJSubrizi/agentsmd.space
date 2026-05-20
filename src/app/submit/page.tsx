@@ -1,75 +1,65 @@
-import { Github } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
+import { SubmitForm } from "@/components/submit/SubmitForm";
+import { getAllFiles } from "@/lib/content";
 
-export const metadata = { title: "Submit a file — Agents" };
-
-const schema = `---
-title: "AGENTS.md for Next.js + Supabase SaaS"
-slug: "nextjs-supabase-saas"
-type: "AGENTS.md"
-description: "Production-ready instructions for AI agents working on a modern SaaS app."
-agents: ["Codex", "Cursor", "Windsurf", "OpenCode"]
-stack: ["Next.js", "Supabase", "Tailwind", "shadcn/ui", "Stripe"]
-tags: ["saas", "typescript", "auth", "database"]
-useCase: "SaaS"
-author: "community"
-featured: true
----`;
+export const metadata = {
+  title: "Submit a file",
+  description: "Add your AGENTS.md or CLAUDE.md to the directory. Fill the form and open a PR in one click.",
+};
 
 const steps = [
-  { n: "01", title: "Fork the repository", body: "Fork the agentsmd repo to your own GitHub account." },
-  { n: "02", title: "Add your file", body: "Create a new .md file inside /content/agents/ (for AGENTS.md) or /content/claude/ (for CLAUDE.md)." },
-  { n: "03", title: "Add frontmatter", body: "Each file needs YAML frontmatter at the top. Schema shown below." },
-  { n: "04", title: "Open a pull request", body: "We'll review and merge. Approved files go live within 24 hours." },
+  { n: "01", title: "Fill the form", body: "All fields are validated as you type. A live preview shows exactly what will be committed." },
+  { n: "02", title: "Open pull request", body: "One click opens GitHub with the file precompiled. GitHub forks the repo for you and opens the PR." },
+  { n: "03", title: "Review & merge", body: "We review for clarity and accuracy. Approved files go live on the next deploy." },
 ];
 
 export default function SubmitPage() {
+  const existingSlugs = getAllFiles().map((f) => f.slug);
+
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12">
-        <div>
-          <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted mb-2">Contribute</div>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em]">Submit a file</h1>
-          <p className="text-muted mt-4 max-w-xl">
-            Got a great <span className="font-mono text-[color:var(--foreground)]">AGENTS.md</span> or{" "}
-            <span className="font-mono text-[color:var(--foreground)]">CLAUDE.md</span>? Share it with the community.
-            Submission is via GitHub PR — no account needed beyond GitHub.
-          </p>
-
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 items-end mb-12">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted mb-2">Contribute</div>
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em]">Submit a file</h1>
+            <p className="text-muted mt-4 max-w-xl">
+              Fill out the form, hit the button, and GitHub takes it from there. No CLI, no manual frontmatter,
+              no editing YAML by hand.
+            </p>
+          </div>
           <a
-            href="https://github.com/"
+            href="https://github.com/AJSubrizi/agentsmd.space"
             target="_blank"
             rel="noreferrer"
-            className="mt-6 inline-flex items-center gap-2 bg-[color:var(--foreground)] text-[color:var(--background)] px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 text-sm text-muted hover:text-emerald transition-colors self-end justify-self-start lg:justify-self-end"
           >
-            <Github className="h-4 w-4" /> Submit via GitHub
+            <Github className="h-4 w-4" />
+            View repository
+            <ExternalLink className="h-3.5 w-3.5" />
           </a>
+        </div>
 
-          <div className="mt-12 space-y-4">
+        <SubmitForm existingSlugs={existingSlugs} />
+
+        {/* How it works */}
+        <div className="mt-24 border-t border-token pt-12">
+          <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted mb-2">How it works</div>
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] mb-8">Three steps. No setup.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {steps.map((s) => (
-              <div key={s.n} className="rounded-2xl border border-token bg-card p-5 grid grid-cols-[auto_1fr] gap-5 items-start">
+              <div key={s.n} className="rounded-2xl border border-token bg-card p-5">
                 <span className="font-mono text-xs text-emerald">{s.n}</span>
-                <div>
-                  <div className="font-medium tracking-tight">{s.title}</div>
-                  <p className="text-sm text-muted mt-1">{s.body}</p>
-                </div>
+                <div className="font-medium tracking-tight mt-3">{s.title}</div>
+                <p className="text-sm text-muted mt-1.5">{s.body}</p>
               </div>
             ))}
           </div>
-        </div>
-
-        <aside className="lg:sticky lg:top-20 self-start">
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-2">Frontmatter schema</div>
-          <div className="rounded-2xl border border-token bg-card overflow-hidden">
-            <div className="px-4 py-2 border-b border-token text-xs text-muted font-mono">frontmatter.yaml</div>
-            <pre className="font-mono text-[12px] leading-relaxed p-4 overflow-x-auto">
-              <code>{schema}</code>
-            </pre>
-          </div>
-          <p className="text-xs text-muted mt-3">
-            <span className="font-mono">slug</span> must be unique and kebab-case. <span className="font-mono">type</span> is either{" "}
-            <span className="font-mono">"AGENTS.md"</span> or <span className="font-mono">"CLAUDE.md"</span>.
+          <p className="text-xs text-muted mt-6">
+            You need a GitHub account to open the PR — that's it. We use GitHub's standard <em>create file</em> flow,
+            so nothing leaves your browser until you submit on GitHub itself.
           </p>
-        </aside>
+        </div>
       </div>
     </section>
   );
