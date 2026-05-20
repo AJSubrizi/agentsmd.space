@@ -35,7 +35,7 @@ export function Footer() {
           <ul className="space-y-1.5 text-muted">
             <li>MIT licensed</li>
             <li>Free forever</li>
-            <li>No tracking</li>
+            <li><Link href="/privacy">No tracking</Link></li>
           </ul>
         </div>
       </div>

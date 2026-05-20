@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 
 const SITE_URL = "https://agentsmd.space";
 const TITLE = "AgentsMD Space — Community templates for AGENTS.md and CLAUDE.md";
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <PrivacyNotice />
         </ThemeProvider>
       </body>
     </html>
