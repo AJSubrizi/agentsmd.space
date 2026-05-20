@@ -21,10 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--background)]/70 border-b border-token">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="font-mono text-sm px-2 py-1 rounded-md border border-token bg-card group-hover:border-emerald transition-colors">
-            AGENTS.md
-          </span>
-          <span className="font-semibold tracking-tight">Agents</span>
+          <span className="font-semibold tracking-tight">AgentsMD Space</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

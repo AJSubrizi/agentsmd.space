@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Agents — AGENTS.md and CLAUDE.md files for AI coding agents";
+export const alt = "AgentsMD Space — Community templates for AGENTS.md and CLAUDE.md";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -38,7 +38,7 @@ export default function OG() {
           >
             .md
           </div>
-          <div style={{ fontSize: 28, fontWeight: 600, letterSpacing: "-0.02em" }}>Agents</div>
+          <div style={{ fontSize: 28, fontWeight: 600, letterSpacing: "-0.02em" }}>AgentsMD Space</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

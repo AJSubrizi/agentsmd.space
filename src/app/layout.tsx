@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 const SITE_URL = "https://agentsmd.space";
-const TITLE = "Agents — AGENTS.md and CLAUDE.md files for AI coding agents";
+const TITLE = "AgentsMD Space — Community templates for AGENTS.md and CLAUDE.md";
 const DESCRIPTION =
   "Browse community-made AGENTS.md and CLAUDE.md files for Codex, Claude Code, Cursor, Windsurf, OpenCode and more. Copy. Paste. Ship.";
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s — Agents",
   },
   description: DESCRIPTION,
-  applicationName: "Agents",
+  applicationName: "AgentsMD Space",
   authors: [{ name: "agentsmd.space contributors" }],
   keywords: [
     "AGENTS.md",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: SITE_URL,
-    siteName: "Agents",
+    siteName: "AgentsMD Space",
     type: "website",
     locale: "en_US",
   },

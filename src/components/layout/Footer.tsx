@@ -5,9 +5,9 @@ export function Footer() {
     <footer className="border-t border-token mt-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
         <div className="col-span-2 md:col-span-1">
-          <div className="font-mono text-xs px-2 py-1 inline-block rounded-md border border-token">AGENTS.md</div>
-          <p className="text-muted mt-3 max-w-xs">
-            A free, open-source directory of instruction files for AI coding agents.
+          <div className="font-semibold">AgentsMD Space</div>
+          <p className="text-muted mt-2 max-w-xs text-xs">
+            Community templates for AGENTS.md and CLAUDE.md. Free, open-source, no login.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export function Footer() {
       </div>
       <div className="border-t border-token">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 flex flex-wrap justify-between items-center text-xs text-muted">
-          <div>agentsmd.space — built by the community</div>
+          <div>AgentsMD Space · agentsmd.space</div>
           <div className="font-mono">{new Date().getFullYear()}</div>
         </div>
       </div>
